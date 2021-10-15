@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quitto/pages/home.page.dart';
 import 'package:quitto/services/notification.service.dart';
 
@@ -9,6 +10,9 @@ void main() async {
   requestNotificationsPermission();
   await initializeNotifications();
   print(await getFCMToken());
+
+  final _googleSignIn = GoogleSignIn();
+  print(await _googleSignIn.signIn());
 }
 
 class MyApp extends StatelessWidget {
