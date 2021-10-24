@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quitto/pages/finish-registration.page.dart';
 import 'package:quitto/pages/home.page.dart';
 import 'package:quitto/services/notification.service.dart';
 
@@ -32,11 +33,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
         fontFamily: 'Montserrat',
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: HomePage(),
+      // home: HomePage(),
+      home: FinishRegistration(),
     );
   }
 }
