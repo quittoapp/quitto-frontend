@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:quitto/services/auth.service.dart';
 import 'package:quitto/styles/dimensions.dart';
 
-class HomePage extends HookWidget {
+class AuthPage extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
@@ -16,16 +16,24 @@ class HomePage extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/images/logo.svg', width: Dimensions.xxl),
+              SvgPicture.asset('assets/images/logo.svg',
+                  width: Dimensions.xxxl),
               SizedBox(height: Dimensions.s),
               Text('Finally quit smoking'),
               SizedBox(height: Dimensions.xl),
-              SignInButton(Buttons.Google,
-                  onPressed: AuthService.instance.signInWithGoogle),
+              SignInButton(
+                Buttons.Google,
+                onPressed: () => _signInWithGoogle(context),
+              ),
             ],
           )
         ],
       ),
     );
+  }
+
+  void _signInWithGoogle(context) async {
+    await AuthService.instance.signInWithGoogle();
+    Navigator.of(context).pushReplacementNamed('/finish-registration');
   }
 }

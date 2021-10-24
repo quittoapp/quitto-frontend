@@ -3,7 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthService {
   static final instance = new AuthService();
 
-  void signInWithGoogle() async {
+  Future<void> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
     final result = await googleSignIn.signIn();
 

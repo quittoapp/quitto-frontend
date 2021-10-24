@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quitto/pages/finish-registration.page.dart';
-import 'package:quitto/pages/home.page.dart';
+import 'package:quitto/pages/auth.page.dart';
 import 'package:quitto/services/notification.service.dart';
 import 'package:quitto/styles/themes/main-theme.dart';
 
@@ -38,8 +38,11 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
         scaffoldBackgroundColor: Colors.white,
       ),
-      // home: HomePage(),
-      home: FinishRegistration(),
+      routes: {
+        '/auth': (context) => AuthPage(),
+        '/finish-registration': (context) => FinishRegistration(),
+      },
+      initialRoute: '/auth',
     );
   }
 }
