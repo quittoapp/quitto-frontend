@@ -9,46 +9,50 @@ const channelKey = 'smoking_permissions';
 const channelName = 'Smoking permissions';
 const channelDescription = 'Notification channel for smoking permissions';
 
-Future<void> initializeNotifications() async {
-  await Firebase.initializeApp();
-  AwesomeNotifications().initialize('resource://drawable/app_icon', [
-    NotificationChannel(
-      channelKey: channelKey,
-      channelName: channelName,
-      channelDescription: channelDescription,
-      ledColor: Colors.white,
-    ),
-  ]);
+class NotificationService {
+  static final instance = new NotificationService();
 
-  _wireUpFCMToLocalNotifications();
-}
+  Future<void> initializeNotifications() async {
+    await Firebase.initializeApp();
+    AwesomeNotifications().initialize('resource://drawable/app_icon', [
+      NotificationChannel(
+        channelKey: channelKey,
+        channelName: channelName,
+        channelDescription: channelDescription,
+        ledColor: Colors.white,
+      ),
+    ]);
 
-Future<String> getFCMToken() async {
-  await FirebaseMessaging.instance.requestPermission();
-  final token = await FirebaseMessaging.instance.getToken();
-
-  if (token == null) {
-    throw Exception('FCM token is null for some reason');
+    _wireUpFCMToLocalNotifications();
   }
 
-  return token;
-}
+  Future<String> getFCMToken() async {
+    await FirebaseMessaging.instance.requestPermission();
+    final token = await FirebaseMessaging.instance.getToken();
 
-final notificationActionsStream = AwesomeNotifications().actionStream;
-
-void requestNotificationsPermission() {
-  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-    if (!isAllowed) {
-      AwesomeNotifications().requestPermissionToSendNotifications();
+    if (token == null) {
+      throw Exception('FCM token is null for some reason');
     }
-  });
-}
 
-void _wireUpFCMToLocalNotifications() {
-  FirebaseMessaging.onMessage.forEach(_showLocalNotification);
-}
+    return token;
+  }
 
-Future<void> _showLocalNotification(message) async {
-  inspect(message.data);
-  AwesomeNotifications().createNotificationFromJsonData(message.data);
+  final notificationActionsStream = AwesomeNotifications().actionStream;
+
+  void requestNotificationsPermission() {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+  }
+
+  void _wireUpFCMToLocalNotifications() {
+    FirebaseMessaging.onMessage.forEach(_showLocalNotification);
+  }
+
+  Future<void> _showLocalNotification(message) async {
+    inspect(message.data);
+    AwesomeNotifications().createNotificationFromJsonData(message.data);
+  }
 }

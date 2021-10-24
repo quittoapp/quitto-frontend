@@ -1,44 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:quitto/services/auth.service.dart';
+import 'package:quitto/styles/dimensions.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
+class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Quitto',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        shadowColor: Color.fromARGB(0, 0, 0, 0),
-      ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Hello, mate!'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text('1/2')],
-              )
+              SvgPicture.asset('assets/images/logo.svg', width: Dimensions.xxl),
+              SizedBox(height: Dimensions.s),
+              Text('Finally quit smoking'),
+              SizedBox(height: Dimensions.xl),
+              SignInButton(Buttons.Google,
+                  onPressed: AuthService.instance.signInWithGoogle),
             ],
-          ),
-        ),
+          )
+        ],
       ),
     );
   }

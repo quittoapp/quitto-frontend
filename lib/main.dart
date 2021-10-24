@@ -7,12 +7,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 
-  requestNotificationsPermission();
-  await initializeNotifications();
-  print(await getFCMToken());
+  NotificationService.instance.requestNotificationsPermission();
+  await NotificationService.instance.initializeNotifications();
+  // print(await getFCMToken());
 
-  final _googleSignIn = GoogleSignIn();
-  print(await _googleSignIn.signIn());
+  // final _googleSignIn = GoogleSignIn();
+  // final result = await _googleSignIn.signIn();
+  // print(result);
+  // print(await result!.authentication.then((value) {
+  //   print('ID TOKEN');
+  //   var token = value.idToken!;
+  //   while (token.length > 0) {
+  //     int initLength = (token.length >= 500 ? 500 : token.length);
+  //     print(token.substring(0, initLength));
+  //     int endLength = token.length;
+  //     token = token.substring(initLength, endLength);
+  //   }
+  // }));
 }
 
 class MyApp extends StatelessWidget {
