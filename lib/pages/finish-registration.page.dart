@@ -21,11 +21,11 @@ class FinishRegistration extends HookWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Finish registration', style: TextStyles.heading),
-              SizedBox(height: Dimensions.xxl),
+              SizedBox(height: Dimensions.xl),
               TimePicker(label: 'I usually start smoking at'),
-              SizedBox(height: Dimensions.xxl),
+              SizedBox(height: Dimensions.xl),
               TimePicker(label: 'I usually finish smoking at'),
-              SizedBox(height: Dimensions.xxl),
+              SizedBox(height: Dimensions.xl),
               TextFieldWrapper(
                 label: 'Number of cigarettes per day',
                 child: TextField(
@@ -33,6 +33,20 @@ class FinishRegistration extends HookWidget {
                   keyboardType: TextInputType.number,
                 ),
               ),
+              SizedBox(height: Dimensions.xl),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('Finish registration'),
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(
+                    Size(double.infinity, 30),
+                  ),
+                  elevation: MaterialStateProperty.all(6.0),
+                  padding: MaterialStateProperty.all(
+                    EdgeInsets.all(Dimensions.m),
+                  ),
+                ),
+              )
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quitto/pages/finish-registration.page.dart';
 import 'package:quitto/pages/home.page.dart';
 import 'package:quitto/services/notification.service.dart';
+import 'package:quitto/styles/themes/main-theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: mainThemeColor,
         fontFamily: 'Montserrat',
         scaffoldBackgroundColor: Colors.white,
       ),
