@@ -32,10 +32,9 @@ class TimePicker extends HookWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
-        SizedBox(height: Dimensions.m),
         GestureDetector(
           child: TextFieldWrapper(
+            label: label,
             child: TextField(
               controller: textController,
               enabled: false,
