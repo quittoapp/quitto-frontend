@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quitto/model/user.dart';
+import 'package:quitto/models/user.dart';
 import 'package:quitto/services/auth.service.dart';
 import 'package:quitto/services/user.service.dart';
 

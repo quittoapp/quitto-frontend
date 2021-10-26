@@ -1,5 +1,5 @@
 import 'package:quitto/api/authenticated.api.dart';
-import 'package:quitto/model/user.dart';
+import 'package:quitto/models/user.dart';
 
 class UserService {
   static final instance = UserService();
