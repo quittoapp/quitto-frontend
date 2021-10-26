@@ -60,6 +60,7 @@ class TimePicker extends HookWidget {
     }
 
     value.value = time;
+    onChange(time);
   }
 
   String _formatTimePart(String element) {
