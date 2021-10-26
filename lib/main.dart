@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:quitto/pages/finish-registration.page.dart';
 import 'package:quitto/pages/auth.page.dart';
+import 'package:quitto/pages/home.page.dart';
 import 'package:quitto/pages/initial.page.dart';
 import 'package:quitto/services/auth.service.dart';
 import 'package:quitto/services/notification.service.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
           '/initial': (context) => InitialPage(),
           '/auth': (context) => AuthPage(),
           '/finish-registration': (context) => FinishRegistration(),
+          '/home': (context) => HomePage(),
         },
         initialRoute: '/initial',
       ),

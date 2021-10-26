@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:quitto/styles/dimensions.dart';
 import 'package:quitto/styles/text-field-decoration.dart';
 import 'package:quitto/styles/text-field-wrapper.dart';
 import 'package:quitto/utils/noop.dart';

@@ -9,18 +9,25 @@ class InitialPage extends HookWidget {
       Future.delayed(Duration(milliseconds: 0)).then((_) async {
         final userStore = Provider.of<UserStore>(context, listen: false);
         final navigator = Navigator.of(context);
+        final isUserLoggedIn = await userStore.isLoggedIn();
 
-        if (await userStore.isLoggedIn()) {
-          await userStore.getMe();
-          navigator.pushReplacementNamed('/finish-registration');
-        } else {
-          navigator.pushReplacementNamed('/auth');
+        if (!isUserLoggedIn) {
+          return navigator.pushReplacementNamed('/auth');
         }
+
+        await userStore.getMe();
+        final user = userStore.user!;
+
+        if (!user.hasFinishedRegistration) {
+          return navigator.pushReplacementNamed('/finish-registration');
+        }
+
+        return navigator.pushReplacementNamed('/home');
       });
     }, []);
 
-    return Container(
-      child: Text('test'),
+    return Scaffold(
+      body: Text('loading'),
     );
   }
 }
