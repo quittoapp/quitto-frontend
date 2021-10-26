@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:quitto/services/auth.service.dart';
+import 'package:provider/provider.dart';
+import 'package:quitto/stores/user.store.dart';
 import 'package:quitto/styles/dimensions.dart';
 
 class AuthPage extends HookWidget {
@@ -33,7 +36,7 @@ class AuthPage extends HookWidget {
   }
 
   void _signInWithGoogle(context) async {
-    await AuthService.instance.signInWithGoogle();
+    await Provider.of<UserStore>(context, listen: false).authenticate();
     Navigator.of(context).pushReplacementNamed('/finish-registration');
   }
 }

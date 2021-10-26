@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quitto/api/guest.api.dart';
+import 'package:quitto/storage/storage.dart';
 
 class AuthService {
   static final instance = new AuthService();
@@ -12,8 +16,17 @@ class AuthService {
     }
 
     final authentication = await result.authentication;
-    final idToken = authentication.idToken;
+    final idToken = authentication.idToken!;
 
-    print(idToken);
+    final apiAuthResult = await GuestApi.instance.client
+        .post('/auth/google', queryParameters: {'idToken': idToken});
+
+    final jwt = apiAuthResult.data;
+    await Storage.instance.saveJwt(jwt);
+  }
+
+  Future<bool> isLoggedIn() async {
+    final jwt = await Storage.instance.getJwt();
+    return jwt != null;
   }
 }

@@ -1,8 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:quitto/pages/finish-registration.page.dart';
 import 'package:quitto/pages/auth.page.dart';
+import 'package:quitto/pages/initial.page.dart';
+import 'package:quitto/services/auth.service.dart';
 import 'package:quitto/services/notification.service.dart';
+import 'package:quitto/stores/user.store.dart';
 import 'package:quitto/styles/themes/main-theme.dart';
 
 void main() async {
@@ -31,18 +38,24 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: mainThemeColor,
-        fontFamily: 'Montserrat',
-        scaffoldBackgroundColor: Colors.white,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserStore()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: mainThemeColor,
+          fontFamily: 'Montserrat',
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        routes: {
+          '/initial': (context) => InitialPage(),
+          '/auth': (context) => AuthPage(),
+          '/finish-registration': (context) => FinishRegistration(),
+        },
+        initialRoute: '/initial',
       ),
-      routes: {
-        '/auth': (context) => AuthPage(),
-        '/finish-registration': (context) => FinishRegistration(),
-      },
-      initialRoute: '/auth',
     );
   }
 }
