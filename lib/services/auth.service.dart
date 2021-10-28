@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quitto/api/guest.api.dart';
-import 'package:quitto/storage/storage.dart';
+import 'package:quitto/utils/persistence.utils.dart';
 
 class AuthService {
   static final instance = new AuthService();
@@ -22,11 +22,11 @@ class AuthService {
         .post('/auth/google', queryParameters: {'idToken': idToken});
 
     final jwt = apiAuthResult.data;
-    await Storage.instance.saveJwt(jwt);
+    await PersistenceUtils.saveJwt(jwt);
   }
 
   Future<bool> isLoggedIn() async {
-    final jwt = await Storage.instance.getJwt();
+    final jwt = await PersistenceUtils.getJwt();
     return jwt != null;
   }
 }

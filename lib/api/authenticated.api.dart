@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:quitto/storage/storage.dart';
+import 'package:quitto/utils/persistence.utils.dart';
 
 class AuthenticatedApi {
   static final instance = AuthenticatedApi();
@@ -11,7 +11,7 @@ class AuthenticatedApi {
 
     _client.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
-        _jwt ??= await Storage.instance.getJwt();
+        _jwt ??= await PersistenceUtils.getJwt();
 
         options.headers['Authorization'] = 'Bearer $_jwt';
         handler.next(options);
