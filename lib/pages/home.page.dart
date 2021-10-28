@@ -15,7 +15,24 @@ class HomePage extends HookWidget {
           horizontal: Dimensions.l,
           vertical: Dimensions.xxl,
         ),
-        child: Text('Hi, ${user.fullName}', style: TextStyles.heading),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Hi, ${user.fullName}', style: TextStyles.heading),
+            SizedBox(
+              height: Dimensions.xl,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user.photoUrl),
+                  radius: Dimensions.xxl,
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
