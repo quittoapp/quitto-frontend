@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quitto/api/guest.api.dart';
 import 'package:quitto/utils/persistence.utils.dart';

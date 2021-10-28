@@ -7,7 +7,6 @@ import 'package:quitto/pages/initial.page.dart';
 import 'package:quitto/services/notification.service.dart';
 import 'package:quitto/stores/user.store.dart';
 import 'package:quitto/styles/themes/main-theme.dart';
-import 'package:quitto/utils/persistence.utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

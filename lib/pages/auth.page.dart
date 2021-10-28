@@ -9,6 +9,8 @@ import 'package:quitto/styles/dimensions.dart';
 
 class AuthPage extends HookWidget {
   Widget build(BuildContext context) {
+    final userStore = Provider.of<UserStore>(context);
+
     return Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +26,7 @@ class AuthPage extends HookWidget {
               SizedBox(height: Dimensions.xl),
               SignInButton(
                 Buttons.Google,
-                onPressed: () => _signInWithGoogle(context),
+                onPressed: () => _signInWithGoogle(userStore, context),
               ),
             ],
           )
@@ -33,8 +35,13 @@ class AuthPage extends HookWidget {
     );
   }
 
-  void _signInWithGoogle(context) async {
-    await Provider.of<UserStore>(context, listen: false).authenticate();
-    Navigator.of(context).pushReplacementNamed('/finish-registration');
+  void _signInWithGoogle(UserStore userStore, context) async {
+    await userStore.authenticate();
+
+    if (userStore.user!.hasFinishedRegistration) {
+      Navigator.of(context).pushReplacementNamed('/home');
+    } else {
+      Navigator.of(context).pushReplacementNamed('/finish-registration');
+    }
   }
 }

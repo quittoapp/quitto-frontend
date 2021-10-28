@@ -10,6 +10,7 @@ class UserStore extends ChangeNotifier {
 
   Future<void> authenticate() async {
     await AuthService.instance.signInWithGoogle();
+    await getMe();
   }
 
   Future<void> getMe() async {
