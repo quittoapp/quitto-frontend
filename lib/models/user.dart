@@ -4,9 +4,9 @@ class User {
   late String fullName;
   late String photoUrl;
   late bool hasFinishedRegistration;
-  late String fcmToken;
-  late int cigarettesPerDay;
-  late int timezoneOffset;
+  late String? fcmToken;
+  late int? cigarettesPerDay;
+  late int? timezoneOffset;
   late TimeWindow? timeWindow;
   late List<SmokingPermissions> smokingPermissions;
 
@@ -20,7 +20,7 @@ class User {
       required this.cigarettesPerDay,
       required this.timezoneOffset,
       required this.timeWindow,
-      required this.smokingPermissions});
+      this.smokingPermissions = const []});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];

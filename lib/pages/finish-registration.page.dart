@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:quitto/stores/finish-registration.store.dart';
+import 'package:quitto/stores/user.store.dart';
 import 'package:quitto/styles/dimensions.dart';
 import 'package:quitto/styles/text-field-decoration.dart';
 import 'package:quitto/styles/text-field-wrapper.dart';
@@ -50,8 +51,7 @@ class FinishRegistration extends HookWidget {
                   SizedBox(height: Dimensions.xl),
                   ..._buildErrors(finishRegistrationStore),
                   ElevatedButton(
-                    onPressed: () =>
-                        _finishRegistration(finishRegistrationStore, context),
+                    onPressed: () => _finishRegistration(context),
                     child: Text('Finish registration'),
                     style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
@@ -80,8 +80,14 @@ class FinishRegistration extends HookWidget {
     return finishRegistrationStore.errors.map((e) => Text(e)).toList();
   }
 
-  void _finishRegistration(finishRegistrationStore, context) async {
+  void _finishRegistration(BuildContext context) async {
+    final finishRegistrationStore =
+        Provider.of<FinishRegistrationStore>(context, listen: false);
+    final userStore = Provider.of<UserStore>(context, listen: false);
+
     await finishRegistrationStore.finishRegistration();
+    await userStore.getMe();
+
     Navigator.of(context).pushReplacementNamed('/home');
   }
 }

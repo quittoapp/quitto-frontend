@@ -11,10 +11,7 @@ class TextFieldWrapper extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(label),
       SizedBox(height: Dimensions.m),
-      Material(
-        elevation: 6.0,
-        child: child,
-      ),
+      child,
     ]);
   }
 }

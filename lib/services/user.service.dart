@@ -34,7 +34,5 @@ class UserService {
       'timeWindowStartTime': finishRegistrationDTO.timeWindowStartTime,
       'timeWindowEndTime': finishRegistrationDTO.timeWindowEndTime,
     });
-
-    await getMe();
   }
 }

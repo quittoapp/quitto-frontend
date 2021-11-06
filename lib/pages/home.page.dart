@@ -10,7 +10,7 @@ class HomePage extends HookWidget {
     final user = Provider.of<UserStore>(context).user!;
     final amountOfSmokingPermissionsLeft = user.smokingPermissions.length;
     final amountOfSmokedCigs =
-        user.cigarettesPerDay - amountOfSmokingPermissionsLeft;
+        user.cigarettesPerDay! - amountOfSmokingPermissionsLeft;
 
     return Scaffold(
       body: Container(
